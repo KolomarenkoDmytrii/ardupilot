@@ -7,8 +7,6 @@
 
 bool ModeTriangle::_enter()
 {
-    // plane.set_flight_stage(AP_FixedWing::FlightStage::NORMAL);
-
     _start_point_loc = plane.current_loc;
     plane.prev_WP_loc = _start_point_loc;
 

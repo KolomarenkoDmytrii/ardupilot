@@ -1,6 +1,7 @@
 #include "Plane.h"
 
 #include "qautotune.h"
+#include <cstdint>
 
 static void failsafe_check_static()
 {
@@ -223,13 +224,15 @@ bool Plane::gcs_mode_enabled(const Mode::Number mode_num) const
 #endif // HAL_QUADPLANE_ENABLED
 #if MODE_AUTOLAND_ENABLED
         (uint8_t)Mode::Number::AUTOLAND,
+        (uint8_t)Mode::Number::TRIANGLE,
 #else
         0xFF,
 #endif // MODE_AUTOLAND_ENABLED
     };
 
     // Place holders should mean that array is always the same size
-    static_assert(ARRAY_SIZE(mode_list) == 22, "mode_list placeholders incorrect");
+    // static_assert(ARRAY_SIZE(mode_list) == 22, "mode_list placeholders incorrect");
+    static_assert(ARRAY_SIZE(mode_list) == 23, "mode_list placeholders incorrect");
 
     return !block_GCS_mode_change((uint8_t)mode_num, mode_list, ARRAY_SIZE(mode_list));
 }

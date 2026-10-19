@@ -199,6 +199,7 @@ void RC_Channel_Plane::init_aux_function(const RC_Channel::AUX_FUNC ch_option,
 #if AP_ICENGINE_ENABLED
     case AUX_FUNC::ICE_START_STOP:
 #endif
+    case AUX_FUNC::TRIANGLE:
         run_aux_function(ch_option, ch_flag, AuxFuncTrigger::Source::INIT, ch_in);
         break;
 
@@ -496,6 +497,10 @@ bool RC_Channel_Plane::do_aux_function(const AuxFuncTrigger &trigger)
 
 #endif
 
+    case AUX_FUNC::TRIANGLE:
+        do_aux_function_change_mode(Mode::Number::TRIANGLE, ch_flag);
+        break;
+        
     default:
         return RC_Channel::do_aux_function(trigger);
     }

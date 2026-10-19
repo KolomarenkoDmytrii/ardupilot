@@ -411,6 +411,7 @@ public:
         // No guarantees are made in terms of conflicting with other
         // external projects.  See the SCRIPTING_1 range instead if
         // you are writing a Lua script.
+        TRIANGLE = 250,
 
 #if AP_SCRIPTING_ENABLED
         // inputs for the use of onboard lua scripting

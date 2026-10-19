@@ -109,6 +109,10 @@ bool Plane::allow_reverse_thrust(void) const
     case Mode::Number::THERMAL:
         allow |= reverse_thrust_enabled(UseReverseThrust::THERMAL);
         break;
+    // TODO: check if CIRCLE options are suitable
+    // case Mode::Number::TRIANGLE: 
+    //     allow |= reverse_thrust_enabled(UseReverseThrust::AUTO_WAYPOINT);
+    //     break;
     default:
         // all other control_modes allow independent of mask(MANUAL)
         allow = true;

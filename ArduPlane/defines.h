@@ -1,5 +1,7 @@
 #pragma once
 
+#include <cstdint>
+
 // Internal defines, don't edit and expect things to work
 // -------------------------------------------------------
 

@@ -70,6 +70,7 @@ public:
 #if MODE_AUTOLAND_ENABLED
         AUTOLAND      = 26,
 #endif
+        TRIANGLE      = 27,
 
     // Mode number 30 reserved for "offboard" for external/lua control.
     };
@@ -210,6 +211,42 @@ protected:
 #endif
     AP_AHRS& ahrs;
 };
+
+
+class ModeTriangle: public Mode
+{
+public:
+
+    Number mode_number() const override { return Number::TRIANGLE; }
+    const char *name() const override { return "Triangle"; }
+    const char *name4() const override { return "TRGL"; }
+
+    // methods that affect movement of the vehicle in this mode
+    void update() override;
+
+    void navigate() override;
+
+    void run() override;
+
+    bool does_auto_navigation() const override { return true; }
+
+    bool does_auto_throttle() const override { return true; }
+
+#if AP_PLANE_SYSTEMID_ENABLED
+    // does this mode support fixed wing systemid?
+    bool supports_fw_systemid() const override { return true; }
+#endif
+
+protected:
+    int _next_point_number = 0;
+    Location _start_point_loc;
+    Location _middle_point_loc;
+    Location _last_point_loc;
+    Location _next_point_loc;
+    const float _side_m = 300.0;
+    bool _enter() override;
+};
+
 
 
 class ModeAcro : public Mode
